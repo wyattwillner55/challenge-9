@@ -2,18 +2,20 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 
-const generateREADME = ({ projectTitle, projectDesc, instalation, usageDesc, license, contributing, tests, questions, github, email}) =>
-`# ${projectTitle}
+function generateREADME ({ projectTitle, projectDesc, instalation, usageDesc, license, contributing, tests, questions, github, email}) { 
+`
+# ${projectTitle}
 ${projectDesc}
 
-# Table of Contents:
-1. Installation Instructions
-2. Usage
-3. Licenses
-4. Contributing
-5. Tests
-6. Questions
-7. Where to Find Me
+## Table of Contents:
+- [Description](#description)
+- [Installation](#installation)
+- [Usage](#usage)
+- [License](#license)
+- [Contributing](#contributing)
+- [Tests](#tests)
+- [Questions](#questions)
+- [Where to Find Me](#Where to Find Me)
 
 ## Installation Instructions:
 ${instalation}
@@ -42,8 +44,9 @@ const questions = ["What is the project title?" , "What is the project descripti
   "What are the licenses?" , "What are the contributing guidelines?" , "How can you test this?" ,
   "What are the frequently asked questions and answers?" , "What is your github?" , "What is your email?"];
   
-  inquirer
-  .prompt([
+  
+function promptUser() {
+    return inquirer.prompt([
     {
       type: 'input',
       name: 'projectTitle',
@@ -89,15 +92,19 @@ const questions = ["What is the project title?" , "What is the project descripti
         name: 'email',
         message: questions[8],
       },
-  ])
-  .then((answers) => {
-    const readmeContent = 
-  })
+    ]);
+}
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+function writeToFile(fileName, data) {
+    fs.writeFile(filename , data, (err) =>
+    err ? console.log(err) : console.log('Sucessfully created README.MD!')
+    );
+}
 
 // TODO: Create a function to initialize app
-function init() {}
+function init() {
+
+}
 
 // Function call to initialize app
 init();
